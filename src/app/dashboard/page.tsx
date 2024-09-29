@@ -19,6 +19,11 @@ export default function Dashboard() {
   return (
     <div>
       <h1>Welcome, {session?.user?.email}</h1>
+      <pre>
+        <code>
+          {JSON.stringify(session, null,3)}
+        </code>
+      </pre>
       <button onClick={() => signOut()}>Sign out</button>
     </div>
   );
