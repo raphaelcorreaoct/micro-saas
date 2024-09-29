@@ -1,6 +1,10 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { auth } from "@/services/firebase";
+
+import * as admin from "firebase-admin";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export const authOptions = {
   providers: [
@@ -15,22 +19,30 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // Lógica de verificação das credenciais
-        if (credentials?.email === "admin@teste.com" && credentials?.password === "admin") {
-          return { id: "1", email: credentials?.email };
+        try {
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            credentials!.email,
+            credentials!.password
+          );
+          if (userCredential.user) {
+            return { id: userCredential.user.uid, email: userCredential.user.email };
+          }
+        } catch (error) {
+          console.error(error)
+          throw new Error('Invalid email or password');
         }
-        return null; // Retorna null se as credenciais forem inválidas
-      },
+        return null;
+      }
     }),
   ],
   pages: {
-    signIn: '/auth/signin',  // Página de login
-    error: '/auth/error',    // Página de erro personalizada
+    signIn: "/auth/signin", // Página de login
+    error: "/auth/error", // Página de erro personalizada
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
 
+const handler = NextAuth(authOptions);
 
-const handler = NextAuth(authOptions)
-
-export { handler as GET, handler as POST }
+export { handler as GET, handler as POST };

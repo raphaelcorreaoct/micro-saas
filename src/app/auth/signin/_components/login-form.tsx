@@ -8,7 +8,7 @@ import { signIn } from 'next-auth/react';
 
 const LoginForm = () => {
   const [email, setEmail] = useState("admin@teste.com");
-  const [password, setPassword] = useState("admin");
+  const [password, setPassword] = useState("admin123");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,6 +19,7 @@ const LoginForm = () => {
       callbackUrl: "/dashboard",
     });
   };
+
   return (
     <Card className="max-w-md mx-auto mt-10 p-5">
       <h2 className="text-2xl font-bold mb-5">Login</h2>
@@ -57,6 +58,8 @@ const LoginForm = () => {
           Entrar
         </Button>
       </form>
+
+      <Button  className="w-full mt-3" onClick={() => signIn('google')}>Sign in with Google</Button>
     </Card>
   );
 };
