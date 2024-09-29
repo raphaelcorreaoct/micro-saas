@@ -18,7 +18,7 @@
     "firebase": "^10.13.2",
     "firebase-admin": "^12.4.0",
     "lucide-react": "^0.446.0",
-    "next": "14.2.13",
+    "next": "^14.2.13",
     "next-auth": "^4.24.8",
     "react": "^18",
     "react-dom": "^18",
@@ -28,6 +28,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@types/next-auth": "^3.13.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

@@ -4,13 +4,13 @@ import { getApps, getApp, initializeApp } from 'firebase/app';
 import { getStorage } from '@firebase/storage';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDxvR8qZ9LrMxagL90upskU8kxFB0N-jhA',
-  authDomain: 'link-four.firebaseapp.com',
-  projectId: 'link-four',
-  storageBucket: 'link-four.appspot.com',
-  messagingSenderId: '122420949976',
-  appId: '1:122420949976:web:a3092db3771ffc8e7a78ad',
-  measurementId: 'G-7W3RT0M6E2',
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
