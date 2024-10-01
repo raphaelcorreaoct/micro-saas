@@ -16,7 +16,7 @@ const LoginForm = () => {
       email,
       password,
       redirect: true,
-      callbackUrl: "/dashboard",
+      callbackUrl: "/admin",
     });
   };
 
